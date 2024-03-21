@@ -1,36 +1,31 @@
 import React from "react";
-import Logo from "./assets/chatapp-logo-transparent.png";
 import { Link, useNavigate } from 'react-router-dom'
 
-function welcome() {
+function signup() {
 
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
   return (
     <div className="main">
-      <div className="Mobile-size">
-        <div className="back-image">
-          <div className="logo">
-            <img src={Logo} alt="" />
+      <div className="Login-main">
+        <div className="back-btn-div" onClick={()=>navigate("/")}>
+            <i className="ri-arrow-left-s-line"></i>
+        </div>
+        <div className="Login-heading">
+          <div style={{ width: "293px" }}>
+            <h2>Signup with Email</h2>
+            <span style={{ opacity: "0.7" }}>
+              Welcome back, Sign in using your Social account or email to
+              continue us
+            </span>
           </div>
-          <div className="slogan">
-            <span>
-              Connect <br /> friends
-            </span>{" "}
-            <br />
-            <span className="second-span">
-              easily & <br />
-              quickly
-            </span>{" "}
-            <br />
-            <p className="note">
-              our chat app is the perfect way to stay connected with friends and
-              family.
-            </p>
-          </div>
-          <div className="login-with-social">
-            <div className="facebook-icon">
-              <a href="#">
+        </div>
+        <div
+          className="login-with-social"
+          style={{ alignItems: "center", justifyContent: "center" }}
+        >
+          <div className="facebook-icon" style={{ borderColor: "#000" }}>
+            <a href="#">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 x="0px"
@@ -48,9 +43,9 @@ function welcome() {
                   d="M26.572,29.036h4.917l0.772-4.995h-5.69v-2.73c0-2.075,0.678-3.915,2.619-3.915h3.119v-4.359c-0.548-0.074-1.707-0.236-3.897-0.236c-4.573,0-7.254,2.415-7.254,7.917v3.323h-4.701v4.995h4.701v13.729C22.089,42.905,23.032,43,24,43c0.875,0,1.729-0.08,2.572-0.194V29.036z"
                 ></path>
               </svg>
-              </a>
-            </div>
-            <div className="google-icon">
+            </a>
+          </div>
+          <div className="google-icon" style={{ borderColor: "#000" }}>
             <a href="#">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -78,17 +73,35 @@ function welcome() {
                 ></path>
               </svg>
             </a>
+          </div>
+        </div>
+        <div className="divider-login"></div>
+        <div className="form-data">
+          <form>
+            <div className="signup-fields">
+              <label htmlFor="name">Your name</label>
+              <input type="text" />
             </div>
-          </div>
-          <div className="divider"></div>
-          <div className="btn-mail">
-            <button onClick={()=>{navigate("/Signup")}}>Signup with mail</button>
-            <span>Existing account?&nbsp;&nbsp;<a onClick={()=>{navigate("/Login")}} style={{cursor:'pointer'}}>Log in</a></span>
-          </div>
+            <div className="signup-fields">
+              <label htmlFor="email">Your email</label>
+              <input type="email" />
+            </div>
+            <div className="signup-fields">
+              <label htmlFor="password">Password</label>
+              <input type="password" />
+            </div>
+            <div className="signup-fields">
+              <label htmlFor="cpassword">Confirm Password</label>
+              <input type="password" />
+            </div>
+            <div className="btn-login signup-btn">
+              <button>Create an account</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   );
 }
 
-export default welcome;
+export default signup;
