@@ -1,9 +1,100 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom'
 
 function signup() {
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [mobile,setMobile] = useState('');
+  const [password, setPassword] = useState('');
+  
+  const [isNameValid, setIsNameValid] = useState(false);
+  const [isEmailValid, setIsEmailValid] = useState(false);
+  const [isMobileValid,setIsMobileValid] = useState(false);
+  const [isPasswordValid, setIsPasswordValid] = useState(false);
+  
+  const [nameError, setNameError] = useState({
+    display: 'none',
+    b_color: '',
+    msg:''
+  });
+  const [emailError, setEmailError] = useState({
+    display: 'none',
+    b_color: '',
+    msg:''
+  });
+  const [mobileError, setMobileError] = useState({
+    display: 'none',
+    b_color: '',
+    msg:''
+  });
+  const [passError, setPassError] = useState({
+    display: 'none',
+    b_color: '',
+    msg:''
+  });
+  
+  const [show_paswd,setShow_pass] = useState({
+    icon: 'ri-eye-off-line',
+    b_color: '',
+    type: 'password'
+  });
+
+  
+  
+
+  const handleNameChange = (e) => {
+    const value = e.target.value;
+    setName(value);
+    setIsNameValid(value.trim().length > 0);
+    value.trim().length == 0 ? setNameError({display: 'block',b_color: 'red',msg:'Name must be required!*'}) : setNameError({display: 'none',b_color: '',msg:''});
+  }
+
+  const handleEmailChange = (e) => {
+    const value = e.target.value;
+    setEmail(value);
+    
+    if(value === ""){
+      setEmailError({display: 'block',b_color: 'red',msg:'Email must be required!*'
+      });
+    } else{
+      const isValid = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(value);
+      (isValid)?setEmailError({display: 'none',b_color: '',msg:''}):setEmailError({display: 'block',b_color: 'red',msg:'Email is invalid!*'});
+      setIsEmailValid(isValid);
+    }
+  }
+
+  const handleMobileChange = (e) => {
+    const value = e.target.value;
+    setIsMobileValid(value.length >= 10);
+    if (value == "") {
+      setMobile(value);
+      setMobileError({display: 'block',b_color: 'red',msg:'Mobile number is required!*'});
+    } else if (value.trim().length <= 10){
+      setMobile(value);
+      (value.length == 10) ?
+      setMobileError({display: 'none',b_color: '',msg:''}) :
+      setMobileError({display: 'block',b_color: 'red',msg:'Mobile number must be 10 numbers!*'});
+    }
+  }
+
+  const handlePassChange = (e) => {
+    const value = e.target.value;
+    setPassword(value);
+    setIsPasswordValid(value.length >= 6);
+    if (value === "") {
+      setPassError({display: 'block',b_color: 'red',msg:'Password must be required!*'});
+    } else {
+      value.length < 6 ? setPassError({display: 'block',b_color: 'red',msg:'Password must be at least 6 characters!*'}) : setPassError({display: 'none',b_color: '',msg:''});
+    }
+  }
+
+  const isSubmitDisable = !isNameValid || !isEmailValid || !isMobileValid || !isPasswordValid
+
+  
+
 
   return (
     <div className="main">
@@ -80,22 +171,27 @@ function signup() {
           <form>
             <div className="signup-fields">
               <label htmlFor="name">Your name</label>
-              <input type="text" />
+              <input type="text" style={{borderColor:nameError.b_color}} value={name} onChange={handleNameChange} />
+              <p className="error-msg" style={{display:nameError.display}}>{nameError.msg}</p>
             </div>
             <div className="signup-fields">
               <label htmlFor="email">Your email</label>
-              <input type="email" />
+              <input type="email" style={{borderColor:emailError.b_color}} value={email} onChange={handleEmailChange} />
+              <p className="error-msg" style={{display:emailError.display}}>{emailError.msg}</p>
+            </div>
+            <div className="signup-fields">
+              <label htmlFor="mobile">Mobile no</label>
+              <input type="number" maxLength={10} style={{borderColor:mobileError.b_color}} value={mobile} onChange={handleMobileChange} />
+              <p className="error-msg" style={{display:mobileError.display}}>{mobileError.msg}</p>
             </div>
             <div className="signup-fields">
               <label htmlFor="password">Password</label>
-              <input type="password" />
+              <input type="password" style={{borderColor:passError.b_color}} value={password} onChange={handlePassChange} />
+              <p className="error-msg" style={{display:passError.display}}>{passError.msg}</p>
             </div>
-            <div className="signup-fields">
-              <label htmlFor="cpassword">Confirm Password</label>
-              <input type="password" />
-            </div>
+            
             <div className="btn-login signup-btn">
-              <button>Create an account</button>
+              <button disabled={isSubmitDisable}>Create an account</button>
             </div>
           </form>
         </div>

@@ -1,9 +1,51 @@
-import React from "react";
+import React, { useState }  from "react";
 import { Link, useNavigate } from 'react-router-dom'
 
 function login() {
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isEmailValid, setIsEmailValid] = useState(false);
+  const [isPasswordValid, setIsPasswordValid] = useState(false);
+  const [emailError, setEmailError] = useState({
+    display: 'none',
+    b_color: '',
+    msg:''
+  });
+  const [passError, setPassError] = useState({
+    display: 'none',
+    b_color: '',
+    msg:''
+  });
+
+  const handleEmailChange = (e) => {
+    const value = e.target.value;
+    setEmail(value);
+    
+    if(value === ""){
+      setEmailError({display: 'block',b_color: 'red',msg:'Email must be required!*'
+      });
+    } else{
+      const isValid = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(value);
+      (isValid)?setEmailError({display: 'none',b_color: '',msg:''}):setEmailError({display: 'block',b_color: 'red',msg:'Email is invalid!*'});
+      setIsEmailValid(isValid);
+    }
+  }
+
+  const handlePassChange = (e) => {
+    const value = e.target.value;
+    setPassword(value);
+    setIsPasswordValid(value.length >= 6);
+    if (value === "") {
+      setPassError({display: 'block',b_color: 'red',msg:'Password must be required!*'});
+    } else {
+      value.length < 6 ? setPassError({display: 'block',b_color: 'red',msg:'Password must be at least 6 characters!*'}) : setPassError({display: 'none',b_color: '',msg:''});
+    }
+  }
+
+  const isSubmitDisable = !isEmailValid || !isPasswordValid
 
   return (
     <div className="main">
@@ -77,14 +119,16 @@ function login() {
             <form>
                 <div className="fields">
                     <label htmlFor="email">Your email</label>
-                    <input type="email" />
+                    <input type="email" style={{borderColor:emailError.b_color}} value={email} onChange={handleEmailChange} />
+                    <p className="error-msg" style={{display:emailError.display,top:'72px'}}>{emailError.msg}</p>
                 </div>
                 <div className="fields">
                     <label htmlFor="password">Password</label>
-                    <input type="password" />
+                    <input type="password" style={{borderColor:passError.b_color}} value={password} onChange={handlePassChange} />
+                    <p className="error-msg" style={{display:passError.display,top:'72px'}}>{passError.msg}</p>
                 </div>
                 <div className="btn-login">
-                    <button>Log in</button>
+                    <button disabled={isSubmitDisable}>Log in</button>
                     <a href="#">Forgot Password?</a>
                 </div>
             </form>
