@@ -21,9 +21,9 @@ function home() {
               <path
                 d="M16.9583 16.9583L20.1666 20.1667M19.2499 10.5417C19.2499 5.7322 15.3511 1.83334 10.5416 1.83334C5.73211 1.83334 1.83325 5.7322 1.83325 10.5417C1.83325 15.3512 5.73211 19.25 10.5416 19.25C15.3511 19.25 19.2499 15.3512 19.2499 10.5417Z"
                 stroke="white"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </a>
@@ -42,28 +42,28 @@ function home() {
                 rx="7"
                 ry="3.5"
                 stroke="white"
-                stroke-width="1.5"
-                stroke-linejoin="round"
+                strokeWidth="1.5"
+                strokeLinejoin="round"
               />
               <circle
                 cx="10"
                 cy="7"
                 r="4"
                 stroke="white"
-                stroke-width="1.5"
-                stroke-linejoin="round"
+                strokeWidth="1.5"
+                strokeLinejoin="round"
               />
               <path
                 d="M21 11H17"
                 stroke="white"
-                stroke-width="1.5"
-                stroke-linecap="round"
+                strokeWidth="1.5"
+                strokeLinecap="round"
               />
               <path
                 d="M19 9L19 13"
                 stroke="white"
-                stroke-width="1.5"
-                stroke-linecap="round"
+                strokeWidth="1.5"
+                strokeLinecap="round"
               />
             </svg>
           </div>

@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "ejs": "^3.1.9",
+    "express": "^4.19.2",
+    "figlet": "^1.7.0",
+    "mongodb": "^6.5.0",
+    "mongoose": "^8.2.4"
+  }
+}

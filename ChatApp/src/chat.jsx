@@ -1,13 +1,20 @@
 import React from "react";
 import Profile2 from "./assets/profile_2.png";
 import Profile3 from "./assets/profile3.png";
+import { useNavigate } from 'react-router-dom'
 
 function chat() {
+
+  const navigate = useNavigate();
+
+  const redirectToHome = () => {
+      navigate("/Home")
+  }
   return (
     <div className="main">
       <div className="chat-main">
           <div className="chat-header">
-            <a href="#">
+            <a href="#" onClick={redirectToHome}>
               <i className="ri-arrow-left-s-line"></i>
             </a>
             <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>

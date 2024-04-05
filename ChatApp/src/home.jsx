@@ -4,8 +4,17 @@ import Profile2 from "./assets/profile_2.png";
 import Profile3 from "./assets/profile3.png";
 import Profile4 from "./assets/profile_4.png";
 import Bottom_nav from "./bottom_nav.jsx";
+import { useNavigate } from 'react-router-dom'
+
 
 function home() {
+
+  const navigate = useNavigate();
+
+  const redirectToChat = () => {
+    navigate("/Chat")
+  }
+
   return (
     <div className="main">
       <div className="home-main">
@@ -21,9 +30,9 @@ function home() {
               <path
                 d="M16.9583 16.9583L20.1666 20.1667M19.2499 10.5417C19.2499 5.7322 15.3511 1.83334 10.5416 1.83334C5.73211 1.83334 1.83325 5.7322 1.83325 10.5417C1.83325 15.3512 5.73211 19.25 10.5416 19.25C15.3511 19.25 19.2499 15.3512 19.2499 10.5417Z"
                 stroke="white"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </a>
@@ -34,7 +43,7 @@ function home() {
         </div>
         <div className="user-list">
           <div className="user-profile">
-            <div className="sub-user-profile">
+            <div className="sub-user-profile" onClick={redirectToChat}>
               <div
                 style={{ display: "flex", alignItems: "center", gap: "15px" }}
               >
@@ -78,8 +87,8 @@ function home() {
                   <img src={profile} alt="" />
                 </div>
                 <div className="user-name">
-                  <h2>Salaman Haidar</h2>
-                  <span>Hey, let's meet today.</span>
+                  <h2>Salaman Haidar gulam abbas</h2>
+                  <span>Hey, let's meet today. what are you doing</span>
                 </div>
               </div>
               <div className="active-time">

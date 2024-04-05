@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+
+
 
 function signup() {
 
@@ -93,6 +95,9 @@ function signup() {
 
   const isSubmitDisable = !isNameValid || !isEmailValid || !isMobileValid || !isPasswordValid
 
+  const handleUserform = () => {
+    navigate("/Home");
+  }
   
 
 
@@ -168,7 +173,7 @@ function signup() {
         </div>
         <div className="divider-login"></div>
         <div className="form-data">
-          <form>
+          <form onSubmit={handleUserform}>
             <div className="signup-fields">
               <label htmlFor="name">Your name</label>
               <input type="text" style={{borderColor:nameError.b_color}} value={name} onChange={handleNameChange} />
